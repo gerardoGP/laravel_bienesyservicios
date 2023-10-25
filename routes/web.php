@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleLogin;
+use App\Http\Controllers\WebController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +22,5 @@ Route::get('google',function(){
 });
 Route::get('/auth/google', [GoogleLogin::class,"redirectToGoogle"]);    
 Route::get('/auth/google/callback', [GoogleLogin::class,"handleGoogleCallback"]);
+
+Route::get('/posts', [WebController::class,"index"]);
