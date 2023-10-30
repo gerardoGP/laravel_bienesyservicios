@@ -19,15 +19,16 @@ class GoogleLogin extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
+    public function redirectToRegister(){
+        return view('auth.register');
+    }
     public function handleGoogleCallback()
     {
-        try {
             $user = Socialite::driver('google')->user();
-            $finduser = User::where('google_id', $user->id)->first();
+            $finduser = User::where('email', $user->email)->first();
             if($finduser){
                 Auth::login($finduser);
-                // return redirect('/home');
-                return redirect()->back();
+                return redirect()->intended("/posts");
             }else{
                 $newUser = User::create([
                     'name' => $user->name,
@@ -35,10 +36,11 @@ class GoogleLogin extends Controller
                     'google_id'=> $user->id
                 ]);
                 Auth::login($newUser);
-                return redirect()->back();
+                return redirect()->intended("/posts");
             }
-        } catch (Exception $e) {
-            return redirect('auth/google');
-        }
+    }
+    public function logout(Request $request){
+        Auth::logout();
+        return redirect()->route("home");
     }
 }
