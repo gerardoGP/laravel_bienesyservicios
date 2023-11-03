@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Ajax\UbigeoController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GoogleLogin;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\PostulanteController;
 /*
@@ -19,15 +20,16 @@ Route::get('/', [WebController::class,"index"])->name("home");
 Route::get('/login',function(){
     return view('auth.login');
 })->name("login");
-Route::get('/register',[GoogleLogin::class,'redirectToRegister'])->name("register");
+Route::get('/register',[AuthController::class,'redirectToRegister'])->name("register");
+Route::post('/register',[AuthController::class,'register'])->name("registerPost");
 
-Route::post('/logout',[GoogleLogin::class, 'logout'])->name('logout');
+Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
 
-Route::get('/auth/google', [GoogleLogin::class,"redirectToGoogle"])->name('redirectToGoogle');
-Route::get('/auth/google/callback', [GoogleLogin::class,"handleGoogleCallback"]);
+Route::get('/auth/google', [AuthController::class,"redirectToGoogle"])->name('redirectToGoogle');
+Route::get('/auth/google/callback', [AuthController::class,"handleGoogleCallback"]);
 
-Route::get('/auth/microsfot', [GoogleLogin::class,"redirectToMicrosoft"])->name('redirectToMicrosoft');
-Route::get('/auth/microsfot/callback', [GoogleLogin::class,"handleMicrosfotCallback"]);
+Route::get('/auth/microsfot', [AuthController::class,"redirectToMicrosoft"])->name('redirectToMicrosoft');
+Route::get('/auth/microsfot/callback', [AuthController::class,"handleMicrosfotCallback"]);
 
 Route::get('/posts', [WebController::class,"index"])->name("public.posts");
 Route::get('/post/{id}', [PostulanteController::class,'post_detalle'])->name('postDetalle');
@@ -35,3 +37,5 @@ Route::middleware(['auth'])->group(function () {
     // para rutas que requieran authenticacion
     Route::get('/postular/{id_post}', [PostulanteController::class,'formularioPostular'])->name("frmPostular");
 });
+
+Route::get('/ajax/departaments/all', [UbigeoController::class,'get_departamentos'])->name("getDepartamentos");
