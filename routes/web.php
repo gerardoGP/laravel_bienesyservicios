@@ -22,8 +22,12 @@ Route::get('/login',function(){
 Route::get('/register',[GoogleLogin::class,'redirectToRegister'])->name("register");
 
 Route::post('/logout',[GoogleLogin::class, 'logout'])->name('logout');
+
 Route::get('/auth/google', [GoogleLogin::class,"redirectToGoogle"])->name('redirectToGoogle');
 Route::get('/auth/google/callback', [GoogleLogin::class,"handleGoogleCallback"]);
+
+Route::get('/auth/microsfot', [GoogleLogin::class,"redirectToMicrosoft"])->name('redirectToMicrosoft');
+Route::get('/auth/microsfot/callback', [GoogleLogin::class,"handleMicrosfotCallback"]);
 
 Route::get('/posts', [WebController::class,"index"])->name("public.posts");
 Route::get('/post/{id}', [PostulanteController::class,'post_detalle'])->name('postDetalle');

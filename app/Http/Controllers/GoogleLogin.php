@@ -19,25 +19,32 @@ class GoogleLogin extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
+    public function redirectToMicrosoft()
+    {
+        return Socialite::driver('azure')->redirect();
+    }
     public function redirectToRegister(){
         return view('auth.register');
     }
     public function handleGoogleCallback()
     {
-            $user = Socialite::driver('google')->user();
-            $finduser = User::where('email', $user->email)->first();
-            if($finduser){
-                Auth::login($finduser);
-                return redirect()->intended("/posts");
-            }else{
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id'=> $user->id
-                ]);
-                Auth::login($newUser);
-                return redirect()->intended("/posts");
-            }
+        $user = Socialite::driver('google')->user();
+        $finduser = User::where('email', $user->email)->first();
+        if($finduser){
+            Auth::login($finduser);
+            return redirect()->intended("/posts");
+        }else{
+            $newUser = User::create([
+                'name' => $user->name,
+                'email' => $user->email,
+                'google_id'=> $user->id
+            ]);
+            Auth::login($newUser);
+            return redirect()->intended("/posts");
+        }
+    }
+    public function handleMicrosfotCallback(){
+        echo "Login con microsoft";
     }
     public function logout(Request $request){
         Auth::logout();

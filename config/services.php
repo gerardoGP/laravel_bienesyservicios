@@ -35,4 +35,11 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT'),
     ],
+    
+    'azure' => [    
+        'client_id' => env('MICROSOFT_AZURE_CLIENT_ID'),
+        'client_secret' => env('MICROSOFT_AZURE_CLIENT_SECRET'),
+        'redirect' => env('MICROSOFT_AZURE_REDIRECT_URI'),
+        'tenant' => env('MICROSOFT_AZURE_TENANT_ID')
+      ],
 ];
