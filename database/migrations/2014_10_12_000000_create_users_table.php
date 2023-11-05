@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->rememberToken();
             $table->string('google_id')->nullable();
-            $table->enum('update_prof',["1","0"])->default("0")->comment("1:obligatorio,0:actualizado");
+            $table->enum('update_prof',["1","0","2"])->default("2")->comment("1:obligatorio,0:actualizado,2:nuevo");
             $table->timestamp('last_session')->nullable();
             $table->timestamps();
         });

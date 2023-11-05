@@ -39,3 +39,5 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/ajax/departaments/all', [UbigeoController::class,'get_departamentos'])->name("getDepartamentos");
+Route::get('/ajax/provinces/{id_dep}',[UbigeoController::class,'get_prov_by_dep'])->name('getProvByIdDep');
+Route::get('/ajax/districts/{id_prov}',[UbigeoController::class,'get_dist_by_prov'])->name('getDistByProv');

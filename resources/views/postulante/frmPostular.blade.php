@@ -22,18 +22,17 @@ Postular
                         <label for="tip_doc" class="block text-sm font-medium leading-6 text-gray-900">Tipo de
                             Documento</label>
                         <div class="mt-2">
-                            <select required id="tip_doc" name="tip_doc"
-                                class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                                <option value="" hidden>Seleccione</option>
-                                <option selected value="RUC">R.U.C</option>
-                            </select>
+                            <input autocomplete="off" required type="text" name="tip_doc" id="tip_doc"
+                                value="{{Auth::user()->type_doc}}"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                     </div>
                     <div class="sm:col-span-3">
                         <label for="num_doc" class="block text-sm font-medium leading-6 text-gray-900">Número del
                             Documento</label>
                         <div class="mt-2">
-                            <input autocomplete="off" required onInput="digitar_nro_doc(event)" type="text" name="num_doc" id="num_doc"
+                            <input autocomplete="off" required type="text" name="num_doc" id="num_doc"
+                                value="{{Auth::user()->nro_doc}}"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                     </div>
@@ -43,7 +42,7 @@ Postular
                         <div class="mt-2">
                             <input autocomplete="off" required type="text" name="raz_soc" id="raz_soc"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                value="{{Auth::user()->name}}">
+                                value="{{Auth::user()->raz_soc}}">
                         </div>
                     </div>
                     <div class="sm:col-span-3">
@@ -51,6 +50,7 @@ Postular
                             contacto</label>
                         <div class="mt-2">
                             <input autocomplete="off" required type="text" name="cel_con" id="cel_con" autocomplete="given-name"
+                                value="{{Auth::user()->phone}}"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                     </div>

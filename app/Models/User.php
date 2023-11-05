@@ -23,6 +23,12 @@ class User extends Authenticatable
         'nro_doc',
         'phone',
         'password',
+        'type_doc',
+        'depa',
+        'prov',
+        'dist',
+        'dire',
+        'update_prof'
     ];
 
     /**

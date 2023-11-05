@@ -89,7 +89,7 @@
                                             <span class="absolute -inset-1.5"></span>
                                             <span class="sr-only">Open user menu</span>
                                             <img class="h-8 w-8 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                src="{{asset('./img/perfil.jpg')}}"
                                                 alt="">
                                         </button>
                                     @else
@@ -112,9 +112,9 @@
                             tabindex="-1">
                             <!-- Active: "bg-gray-100", Not Active: "" -->
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                                tabindex="-1" id="user-menu-item-0">Mi Perfil</a>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                tabindex="-1" id="user-menu-item-1">Settings</a>
+                                tabindex="-1" id="user-menu-item-1">Mis Postulaciones</a>
                             <form method="POST" action="{{route('logout')}}">
                                 @csrf
                             <button type="submit" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"

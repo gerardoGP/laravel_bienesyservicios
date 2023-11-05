@@ -4,13 +4,20 @@
     <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100">
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
           <img class="mx-auto h-10 w-auto" src="./img/undc-ico.png" alt="UNDC">
           <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Iniciar Sesión</h2>
         </div>
-      
+        @if(Session::has('message'))
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          <div class="border border-{{Session::get('color')}}-400 bg-{{Session::get('color')}}-100 text-{{Session::get('color')}}-700  px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">{{Session::get('status')}}!</strong>
+            <span class="block sm:inline">{{Session::get('message')}}.</span>
+          </div>
+        </div>
+        @endif
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <div>
                 <a href="{{route('redirectToGoogle')}}" class="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
@@ -18,7 +25,7 @@
                 </a>
             </div>
             <div class="mt-3">
-              <a href="{{route('redirectToMicrosoft')}}" 
+              <a href="{{route('redirectToMicrosoft')}}"
                 class="flex w-full justify-center rounded-md bg-blue-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                   Ingresar con Microsoft
               </a>
