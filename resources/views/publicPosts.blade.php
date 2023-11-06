@@ -6,7 +6,7 @@ Convocatorias
 <div class="overflow-x-auto mt-20">
   <h1 class="mb-8 text-4xl md:text-6xl font-bold leading-tight tracking-tighter text-neutral-800">Convocatoria de Bienes y Servicios</h1>
   <i>Presentar las cotizaciones en fisico:</i>
-  <p><b>Lugar:</b> Carretera de ingreso a Hualcara N° 260-270, San Vicente de Cañete, Perú</p> 
+  <p><b>Lugar:</b> Carretera de ingreso a Hualcara N° 260-270, San Vicente de Cañete, Perú</p>
   <i>Presentar las cotizaciones en digital:</i>
   <p><b>Horario de Atención:</b> Lunes a Viernes, 8am a 1pm y 2pm a 5pm</p>
   <p><b>Correo Electronico:</b> acontrataciones@undc.edu.pe</p>
@@ -31,11 +31,10 @@ Convocatorias
           <th class="py-2">N°</th>
           <th class="py-2">Descripcion</th>
           <th class="text-center py-2">Terminos De Referencia</th>
-          <th class="text-center py-2">Inicio</th>
-          <th class="text-center py-2">Vence</th>
+          <th class="text-center py-2">Publicado</th>
           <th class="text-center py-2">Estado</th>
           <th class="text-center py-2">Compartir</th>
-          <th class="text-center py-2">Postular</th>
+          <th class="text-center py-2">Detalle</th>
       </thead>
       <tbody>
         @if ($posts)
@@ -47,20 +46,21 @@ Convocatorias
             <td class="text-center"><a target="_blank" title="Ver TDR completo" href="{{$post->url_pdf}}" class="text-decoration-line:underline">
               <i class="fa fa-file-pdf"></i> TDR.pdf</a>
             </td>
-            <td >{{$post->start_date}}</td>
-            <td >{{$post->last_date}}</td>
+            <td >{{$post->created_at_for_humans}}</td>
             <td class="text-center">
-              @php echo helperEstado::EstadoPost($post->id)["html"]; @endphp
+                @php $estado = helperEstado::EstadoPost($post->id); @endphp
+                @php echo $estado["html"] @endphp
             </td>
             <td class="text-center">
-              <button type="button" title="Compartir esta publicacion" class="text-white hover:bg-yellow-500 bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">
-                <i class="fa fa-share"></i> 
+              <button type="button" onclick='compartir("{{route('postDetalle',$post->id)}}")' title="Compartir esta publicacion" class="text-white hover:bg-yellow-500 bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">
+                <i class="fa-regular fa-copy"></i>
               </button>
             </td>
             <td>
-              <button onclick="irFrmPostular({{$post->id}})" type="button" title="Postular" class="text-white bg-blue-700 hover:bg-yellow-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">
-                <i class="fa-solid fa-right-to-bracket"></i>
-              </button>
+                <button onclick="verDetallePost({{$post->id}})"  title="Ver detalles de la publicacion" class="text-white bg-blue-700 hover:bg-yellow-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">
+                    {{-- <i class="fa-solid fa-envelope"></i> --}}
+                    <i class="fa-regular fa-eye"></i>
+                </button>
             </td>
           </tr>
           @php $contador ++; @endphp
@@ -78,9 +78,28 @@ Convocatorias
   </div>
 </div>
 <script>
-  function irFrmPostular(id){
+  function verDetallePost(id){
     // window.location = `${url}`
-    window.location.href = `/postular/${id}`;
+    window.location.href = `/post/${id}`;
   }
+  function compartir(url){
+        // let url = `http://127.0.0.1:8000/post/${id}`;
+        navigator.clipboard.writeText(url);
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'success',
+            title: 'Copiado al portapapeles'
+        })
+    }
 </script>
 @endsection

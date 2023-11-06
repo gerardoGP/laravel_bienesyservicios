@@ -30,7 +30,7 @@
                         <span class="sr-only">Open main menu</span>
                         <!--
                   Icon when menu is closed.
-      
+
                   Menu open: "hidden", Menu closed: "block"
                 -->
                         <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -40,7 +40,7 @@
                         </svg>
                         <!--
                   Icon when menu is open.
-      
+
                   Menu open: "block", Menu closed: "hidden"
                 -->
                         <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -58,7 +58,7 @@
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                            <a href="{{route('home')}}" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
                                 aria-current="page">Publicaciones</a>
                             {{-- <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Publicaciones</a> --}}
                             <a href="#"
@@ -110,6 +110,10 @@
                             class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                             tabindex="-1">
+                            @auth
+                            <p class="px-4 py-2 text-sm">Bienvenido: <br>{{Auth::user()->raz_soc}}</p>
+                            @endauth
+                            <hr>
                             <!-- Active: "bg-gray-100", Not Active: "" -->
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
                                 tabindex="-1" id="user-menu-item-0">Mi Perfil</a>
@@ -156,5 +160,6 @@
             </li>
         </ul>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

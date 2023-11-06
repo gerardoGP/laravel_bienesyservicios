@@ -16,6 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string("description","1000");
+            $table->string("type","50")->default("Servicio");
             $table->string("url_pdf","500");
             $table->foreignId("user_id");
             $table->datetime("start_date");

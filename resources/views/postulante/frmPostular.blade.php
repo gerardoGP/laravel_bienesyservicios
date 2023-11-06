@@ -5,13 +5,13 @@ Postular
 @section('content')
 <div class="overflow-x-auto mt-20">
     <h1 class="mb-8 text-4xl md:text-6xl font-bold leading-tight tracking-tighter text-neutral-800">Convocatoria de Bienes y Servicios</h1>
-    <p class="text-black text-md mt-5"><b>Adquisición: </b>{{$post->description}}</p>
+    <p class="text-black text-3xl mt-5 "><b>{{$post->type}}: </b>{{$post->description}}</p>
     <p class="text-black text-md mt-5"><b>Área Usuaria: </b>Dirección de Bienes Educativos de Extensión</p>
     <p class="text-black text-md mt-5"><b>Terminos de Referencia (TDR): </b><a target="_blank" title="Ver TDR completo" href="{{$post->url_pdf}}" class="text-blue-600 hover:text-blue-300 text-decoration-line:underline"><i class="fa fa-file-pdf"></i> TDR.pdf</a></p>
     <p class="text-black text-md mt-5"><b>Tiempo límite para presentar las cotizaciones: </b></p>
     <p class="text-black text-md mt-5"><b>Fecha de Inicio: </b>{{$post->start_date}}</p>
     <p class="text-black text-md mt-5"><b>Fecha de Fin: </b>{{$post->last_date}}</p>
-    
+
     <form method="POST" class="grid-rows-6 m-2">
         <div class="space-x-4 ">
             <div class="border-b mt-10 border-gray-900/10 pb-12">
@@ -69,8 +69,13 @@ Postular
                         <div class="mt-2">
                             <select required id="selDep" name="selDep"
                                 class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                                <option value="" hidden>Seleccione</option>
-                                
+                                @if ($depas)
+                                    @foreach ($depas as $depa)
+                                        <option {{Auth::user()->depa == $depa->id ? "selected":""}} value="{{$depa->id}}">{{$depa->name}}</option>
+                                    @endforeach
+                                @else
+                                    <option value="" hidden>No se encontraron datos</option>
+                                @endif
                             </select>
                         </div>
                     </div>
@@ -80,7 +85,13 @@ Postular
                         <div class="mt-2">
                             <select required id="selProv" name="selProv"
                                 class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                                <option value="" hidden>Seleccione</option>
+                                @if ($provs)
+                                    @foreach ($provs as $prov)
+                                        <option {{Auth::user()->depa == $prov->id ? "selected":""}} value="{{$prov->id}}">{{$prov->name}}</option>
+                                    @endforeach
+                                @else
+                                    <option value="" hidden>No se encontraron datos</option>
+                                @endif
                             </select>
                         </div>
                     </div>
@@ -90,7 +101,13 @@ Postular
                         <div class="mt-2">
                             <select required id="selDist" name="selDist"
                                 class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                                <option value="" hidden>Seleccione</option>
+                                @if ($dists)
+                                    @foreach ($dists as $dist)
+                                        <option {{Auth::user()->depa == $dist->id ? "selected":""}} value="{{$dist->id}}">{{$dist->name}}</option>
+                                    @endforeach
+                                @else
+                                    <option value="" hidden>No se encontraron datos</option>
+                                @endif
                             </select>
                         </div>
                     </div>
@@ -99,6 +116,7 @@ Postular
                             class="block text-sm font-medium leading-6 text-gray-900">Direccion</label>
                         <div class="mt-2">
                             <input autocomplete="off" required type="text" name="direc" id="direc" autocomplete="given-name"
+                                value="{{Auth::user()->dire}}"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                     </div>
@@ -144,9 +162,9 @@ Postular
                     </fieldset>
                 </div>
                 <h2 class="text-base mt-10 font-semibold leading-7 text-gray-900">3. ARCHIVOS FIRMADOS</h2>
-                <input required 
+                <input required
                     onchange="obtenerTamañoArchivo()"
-                    class="block mt-5 w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" 
+                    class="block mt-5 w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     id="archivoRar" name="archivoRar" type="file">
             </div>
         </div>
