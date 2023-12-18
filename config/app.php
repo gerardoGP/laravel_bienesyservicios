@@ -233,6 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'helperEstado' => \App\Http\Helpers\EstadosHelper::class,
+        'FormatoFecha' => \App\Http\Helpers\FormatoFecha::class,
     ],
-    
+
 ];

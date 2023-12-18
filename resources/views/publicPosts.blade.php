@@ -31,7 +31,8 @@ Convocatorias
           <th class="py-2">N°</th>
           <th class="py-2">Descripcion</th>
           <th class="text-center py-2">Terminos De Referencia</th>
-          <th class="text-center py-2">Publicado</th>
+          <th class="text-center py-2">Inicio</th>
+          <th class="text-center py-2">Fin</th>
           <th class="text-center py-2">Estado</th>
           <th class="text-center py-2">Compartir</th>
           <th class="text-center py-2">Detalle</th>
@@ -46,7 +47,8 @@ Convocatorias
             <td class="text-center"><a target="_blank" title="Ver TDR completo" href="{{$post->url_pdf}}" class="text-decoration-line:underline">
               <i class="fa fa-file-pdf"></i> TDR.pdf</a>
             </td>
-            <td >{{$post->created_at_for_humans}}</td>
+            <td class="text-center">{{FormatoFecha::public_post($post->start_date)}}</td>
+            <td class="text-center">{{FormatoFecha::public_post($post->last_date)}}</td>
             <td class="text-center">
                 @php $estado = helperEstado::EstadoPost($post->id); @endphp
                 @php echo $estado["html"] @endphp

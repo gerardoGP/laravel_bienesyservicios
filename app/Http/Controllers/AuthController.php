@@ -18,10 +18,7 @@ class AuthController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
-    public function redirectToMicrosoft()
-    {
-        return Socialite::driver('azure')->redirect();
-    }
+
     public function redirectToRegister(){
         return view('auth.register');
     }
@@ -42,9 +39,6 @@ class AuthController extends Controller
         $request->session()->flash('color','red');
         return redirect()->route("login");
     }
-    public function handleMicrosfotCallback(){
-        echo "Login con microsoft";
-    }
     public function logout(Request $request){
         Auth::logout();
         return redirect()->route("home");
@@ -59,7 +53,7 @@ class AuthController extends Controller
             "provincia" => "required|max:255",
             "distrito" => "required|max:255",
             "direccion" => "required|max:255"
-        ]);        
+        ]);
         $newUser = User::create([
             'raz_soc' => $request->razon_social,
             'email' => $request->email,
