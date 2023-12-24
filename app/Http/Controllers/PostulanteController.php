@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\typepost;
 use App\Models\Post;
 use App\Models\Departament;
 use App\Models\Province;

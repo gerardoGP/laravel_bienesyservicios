@@ -3,9 +3,10 @@
 Postular
 @endsection
 @section('content')
-<div class="overflow-x-auto mt-20">
-    <h1 class="mb-8 text-4xl md:text-6xl font-bold leading-tight tracking-tighter text-neutral-800">Convocatoria de Bienes y Servicios</h1>
-    <p class="text-black text-3xl mt-5 "><b>{{$post->type}}: </b>{{$post->description}}</p>
+<div class="mt-20">
+    <h1 class="mb-8 text-2xl md:text-3xl font-bold leading-tight tracking-tighter text-neutral-800">Postular: {{$post->description}}</h1>
+    <p class="text-black text-md mt-5"><b>Categoria: </b>{{$post->typePosts->name}}</p>
+    <p class="text-black text-md mt-5"><b>Descargar Formatos a completar: </b><a target="_blank" href="{{$post->typePosts->url_doc}}" class="text-blue-600 hover:text-blue-300 text-decoration-line:underline"><i class="fa fa-file-pdf"></i> Clic aqui</a></p>
     <p class="text-black text-md mt-5"><b>Área Usuaria: </b>Dirección de Bienes Educativos de Extensión</p>
     <p class="text-black text-md mt-5"><b>Terminos de Referencia (TDR): </b><a target="_blank" title="Ver TDR completo" href="{{$post->url_pdf}}" class="text-blue-600 hover:text-blue-300 text-decoration-line:underline"><i class="fa fa-file-pdf"></i> TDR.pdf</a></p>
     <p class="text-black text-md mt-5"><b>Tiempo límite para presentar las cotizaciones: </b></p>
@@ -162,6 +163,7 @@ Postular
                     </fieldset>
                 </div>
                 <h2 class="text-base mt-10 font-semibold leading-7 text-gray-900">3. ARCHIVOS FIRMADOS</h2>
+                <a target="_blank" href="{{$post->typePosts->url_doc}}" class="text-blue-600 hover:text-blue-300 text-decoration-line:underline"><i class="fa fa-file-pdf"></i> Descargar formatos a completar</a>
                 <input required
                     onchange="obtenerTamañoArchivo()"
                     class="block mt-5 w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"

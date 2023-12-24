@@ -9,4 +9,7 @@ class Post extends Model
 {
     use HasFactory;
     use HumanTimestamps;
+    public function typePosts(){
+        return $this->belongsTo(typepost::class,'typePost_id');
+    }
 }

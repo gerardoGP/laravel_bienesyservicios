@@ -111,7 +111,7 @@
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                             tabindex="-1">
                             @auth
-                            <p class="px-4 py-2 text-sm">Bienvenido: <br>{{Auth::user()->raz_soc}}</p>
+                            <p class="px-4 py-2 text-sm">Bienvenido: <br>{{Auth::user()->email}}</p>
                             @endauth
                             <hr>
                             <!-- Active: "bg-gray-100", Not Active: "" -->

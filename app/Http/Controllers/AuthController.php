@@ -35,7 +35,7 @@ class AuthController extends Controller
             return redirect()->intended("/posts");
         }
         $request->session()->flash('message','El correo '.$user->email.' no se encuentra registrado');
-        $request->session()->flash('status','Registre una cuenta');
+        $request->session()->flash('status','Usuario no encontrado');
         $request->session()->flash('color','red');
         return redirect()->route("login");
     }

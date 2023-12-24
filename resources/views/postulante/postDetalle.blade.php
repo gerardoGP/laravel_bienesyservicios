@@ -7,8 +7,8 @@ Detalle Publicacion
     $estado = helperEstado::EstadoPost($post->id);
 @endphp
 <div class=" mt-20">
-  <h1 class="mb-8 text-4xl md:text-6xl font-bold leading-tight tracking-tighter text-neutral-800">Convocatoria de Bienes y Servicios</h1>
-  <p class="text-black text-3xl mt-5 "><b>{{$post->type}}: </b>{{$post->description}}</p>
+  <h1 class="mb-8 text-4xl md:text-6xl font-bold leading-tight tracking-tighter text-neutral-800">Convocatorias de Bienes y Servicios</h1>
+  <p class="text-black text-3xl mt-5 "><b>{{$post->typePosts->name}}: </b>{{$post->description}}</p>
     <p class="text-black text-md mt-5"><b>Área Usuaria: </b>Dirección de Bienes Educativos de Extensión</p>
     <p class="text-black text-md mt-5"><b>Fecha de Publicacion: </b>{{$post->created_at}}</p>
     <p class="text-black text-md mt-5"><b>Estado Actual: </b>{{$estado["message"]}} @php echo $estado["html"] @endphp</p>
