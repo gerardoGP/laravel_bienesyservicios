@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypePostsTable extends Migration
+class CreateCategorysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTypePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('typePosts', function (Blueprint $table) {
+        Schema::create('categorys', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('url_doc',500)->comment('url drive de los formatos');
@@ -28,6 +28,6 @@ class CreateTypePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_type_posts');
+        Schema::dropIfExists('categorys');
     }
 }

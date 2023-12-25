@@ -1,10 +1,12 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Ajax\UbigeoController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\PostulanteController;
+
+use App\Http\Controllers\Admin\PostulantController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
     // para rutas que requieran authenticacion
     Route::get('/postular/{id_post}', [PostulanteController::class,'formularioPostular'])->name("frmPostular");
 });
-
+Route::get('/admin',[PostulantController::class, 'index'])->name('indexPostulant');
 Route::get('/ajax/departaments/all', [UbigeoController::class,'get_departamentos'])->name("getDepartamentos");
 Route::get('/ajax/provinces/{id_dep}',[UbigeoController::class,'get_prov_by_dep'])->name('getProvByIdDep');
 Route::get('/ajax/districts/{id_prov}',[UbigeoController::class,'get_dist_by_prov'])->name('getDistByProv');
